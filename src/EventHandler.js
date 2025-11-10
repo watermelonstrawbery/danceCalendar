@@ -1,6 +1,5 @@
 export function EventHandler(props){
   return<div>
-    <br/>
       <br/>
       {props.event.title}
       <br/>
