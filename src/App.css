@@ -13,6 +13,12 @@
   }
 }
 
+
+.header{
+  background-color: rgb(160, 91, 224);
+  padding: 20px;
+}
+
 .event-box {
   background-color: white;
   min-height: 30vh;
@@ -34,4 +40,9 @@
   border: 5px solid white;
   color: white; 
   border-radius: 20px; 
+}
+
+footer{
+  background-color: gray;
+  padding: 20px;
 }
