@@ -9,6 +9,7 @@ function App() {
   const[filter, setFilter] = useState(false);
   const[style, setStyle] = useState(null);
 
+  let filteredEvents = [];
   const events=[
     {
       key: 1,
@@ -47,7 +48,7 @@ function App() {
     }
   ] 
 
-  const filterOption=["bacahta", "kizomba", "salsa"];
+  const filterOption=["bachata", "kizomba", "salsa"];
 
   function showEvents(event){
     return<div>
@@ -69,9 +70,15 @@ function App() {
 
   function filterStyle(event){
     console.log(event.target.innerText);   
-    setStyle(event.target.innerText);
+    setStyle(event.target.innerText);  
   }
 
+
+  if(style != null){
+    filteredEvents = events.filter((element) => {return element.style.includes(style)});
+  } 
+
+  
   
   return (
 
@@ -93,15 +100,11 @@ function App() {
         <button onClick={filterStyle}>{filterOption[2]}</button>
       </div>  
       )}
+      
 
-      {filterStyle === true && events.filter((style) ).map((event) => <EventHandler event={event}/>) 
-      }
+      {(style !== null && (filteredEvents.map((event) => <EventHandler event={event}/>))) || events.map((event) => <EventHandler event={event}/>) }
       
-      {
-        events.map((event) => <EventHandler event={event}/>)    
-        
-      }
-      
+     
 
         <footer>
           dancecalendar.com
