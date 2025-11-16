@@ -3,6 +3,9 @@ import './App.css';
 import { EventHandler } from './EventHandler';
 import { use, useState } from 'react';
 
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 function App() {
 
@@ -98,6 +101,14 @@ function App() {
         <button onClick={filterStyle}>{filterOption[0]}</button>
         <button onClick={filterStyle}>{filterOption[1]}</button>
         <button onClick={filterStyle}>{filterOption[2]}</button>
+
+        <h4>Date</h4>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+      
+            <DatePicker label="Basic date picker" />
+       
+        </LocalizationProvider>
+
       </div>  
       )}
       
