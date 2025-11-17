@@ -11,61 +11,57 @@ function App() {
 
   const[filter, setFilter] = useState(false);
   const[style, setStyle] = useState(null);
+  const[date, setDate] = useState(null);
 
-  let filteredEvents = [];
+  const filterOption=["bachata", "kizomba", "salsa"];
+
+
   const events=[
     {
       key: 1,
       title: "bailalo",
-      date: '2025-11-29',
+      date: new Date('2025-11-29'),
       style: "kizomba, bachata",
       location: "ssd"
     },
     {
       key: 2,
       title: "Alma",
-      date: '2025-11-08',
+      date: new Date('2025-11-08'),
       style: "kizomba, bachata",
       location: "ssd"
     },
     {
       key: 3,
       title: "Kizmania",
-      date: '2025-11-24',
+      date: new Date('2025-11-24'),
       style: "kizomba",
       location: "Epic"
     },
     {
       key: 4,
       title: "Studio salsa",
-      date: '2025-11-14',
+      date: new Date('2025-11-14'),
       style: "bachata, salsa, reggaeton",
       location: "Colloseum"
     },
     {
       key: 5,
-      title: "bailalo",
-      date: '2025-11-29',
+      title: "Alma",
+      date: new Date('2025-11-29'),
       style: "kizomba, bachata",
+      location: "ssd"
+    },
+    {
+      key: 6,
+      title: "Bachata under ground",
+      date: new Date('2025-12-06'),
+      style: "bachata",
       location: "ssd"
     }
   ] 
 
-  const filterOption=["bachata", "kizomba", "salsa"];
-
-  function showEvents(event){
-    return<div>
-      <br/>
-      {event.title}
-      <br/>
-      {event.date.toDateString()}
-      <br/>
-      {event.style}
-      <br/>
-      {event.location}
-      <br/>
-    </div>
-  }
+  let filteredEvents = events;
   
   function filterOptions(){
     setFilter(true);
@@ -77,10 +73,21 @@ function App() {
   }
 
 
+  function datePickHandler(date){
+    console.log(date.$d);
+    let dateData = date.$d;
+    let dateModified = dateData.toString().substring(0,14);
+    setDate(dateModified);
+  }
+
   if(style != null){
     filteredEvents = events.filter((element) => {return element.style.includes(style)});
   } 
 
+  if(date != null){       
+    filteredEvents = filteredEvents.filter((element) => {return element.date.toString().includes(date)}); 
+  }
+  
   
   
   return (
@@ -103,19 +110,27 @@ function App() {
         <button onClick={filterStyle}>{filterOption[2]}</button>
 
         <h4>Date</h4>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-      
-            <DatePicker label="Basic date picker" />
-       
+        <LocalizationProvider dateAdapter={AdapterDayjs}>    
+            <DatePicker onChange={datePickHandler} label="Choose a date" />      
         </LocalizationProvider>
 
       </div>  
       )}
       
+      {
+        filter === true? 
+            (filteredEvents.length > 0)? 
+              (filteredEvents.map((event) => <EventHandler event={event}/>))
+            : (<div> No results matched</div>)
+        : events.map((event) => <EventHandler event={event}/>)
+      }
 
-      {(style !== null && (filteredEvents.map((event) => <EventHandler event={event}/>))) || events.map((event) => <EventHandler event={event}/>) }
       
-     
+    
+      
+      <h2>hejjjj</h2>
+
+      {((filteredEvents.length > 0) && (filteredEvents.map((event) => <EventHandler event={event}/>))) || events.map((event) => <EventHandler event={event}/>) }
 
         <footer>
           dancecalendar.com
