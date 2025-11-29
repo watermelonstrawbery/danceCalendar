@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { EventHandler } from './EventHandler';
 import { use, useState } from 'react';
+import { EventDetails } from './EventDetails';
 
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
