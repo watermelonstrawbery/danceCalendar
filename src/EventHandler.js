@@ -5,7 +5,6 @@ export function EventHandler(props){
   let formatedDate = new Date(props.event.date).toDateString();
 
   return<div className='event-box'>
-      <br/>
       Event name:
       {props.event.title}
       <br/>
@@ -17,7 +16,6 @@ export function EventHandler(props){
       <br/>
       Location:
       {props.event.location}
-      <br/>
     </div>
 }
 
