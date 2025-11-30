@@ -11,7 +11,7 @@ root.render(
   <BrowserRouter>
     <Routes>
      <Route path="/" element={<App />}/>
-     <Route path="/event-Details" element={<EventDetails />}/>
+     <Route path="/event-Details/:id" element={<EventDetails />}/>
     </Routes>  
   </BrowserRouter>
 );

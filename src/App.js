@@ -17,7 +17,7 @@ function App() {
   const filterOption=["bachata", "kizomba", "salsa"];
 
 
-  const events=[
+  const [events, setEvents]=useState[
     {
       key: 1,
       title: "bailalo",

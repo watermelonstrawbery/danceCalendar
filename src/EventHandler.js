@@ -1,10 +1,13 @@
 import './App.css';
+import { Link } from 'react-router';
+import { EventDetails } from './EventDetails';
 
 export function EventHandler(props){
 
   let formatedDate = new Date(props.event.date).toDateString();
 
-  return<div className='event-box'>
+  return<Link to={`/event-details/${props.event.key}`}>
+    <div className='event-box'>
       Event name:
       {props.event.title}
       <br/>
@@ -17,5 +20,6 @@ export function EventHandler(props){
       Location:
       {props.event.location}
     </div>
+    </Link>
 }
 
