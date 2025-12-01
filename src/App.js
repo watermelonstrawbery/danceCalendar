@@ -14,6 +14,7 @@ function App() {
   const[filter, setFilter] = useState(false);
   const[style, setStyle] = useState(null);
   const[date, setDate] = useState(null);
+  const[searchTerm, setSearchTerm] = useState(null);
 
   const filterOption=["bachata", "kizomba", "salsa"];
 
@@ -45,6 +46,9 @@ function App() {
     filteredEvents = filteredEvents.filter((element) => {return element.date.toString().includes(date)}); 
   }
   
+
+
+  console.log(searchTerm);
   
   
   return (
@@ -54,7 +58,10 @@ function App() {
         <h1>Dance Calendar</h1>
       </header>
 
-      
+      <input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/> 
+
+      <button>Search</button>
+
       <button onClick={filterOptions}>filter</button>
       
       {filter === true && (
