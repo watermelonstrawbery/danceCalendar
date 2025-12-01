@@ -1,6 +1,7 @@
 import './App.css';
 import { Link } from 'react-router';
 import { EventDetails } from './EventDetails';
+import { events } from './events';
 
 export function EventHandler(props){
 
