@@ -7,8 +7,7 @@ export function EventHandler(props){
 
   let formatedDate = new Date(props.event.date).toDateString();
 
-  return<Link to={`/event-details/${props.event.key}`}>
-    <div className='event-box'>
+  return <Link className='event-box' to={`/event-details/${props.event.key}`}>
       Event name:
       {props.event.title}
       <br/>
@@ -20,7 +19,8 @@ export function EventHandler(props){
       <br/>
       Location:
       {props.event.location}
-    </div>
     </Link>
+   
+    
 }
 

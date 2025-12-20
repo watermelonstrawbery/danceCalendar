@@ -31,7 +31,9 @@
   font-size: calc(10px + 2vmin);
   color: black;
   border-radius: 20px; 
-  margin:auto
+  margin:auto;
+  text-decoration: none;
+
 }
 
 .event-details-box{
