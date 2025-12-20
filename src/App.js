@@ -15,6 +15,7 @@ function App() {
   const[style, setStyle] = useState(null);
   const[date, setDate] = useState(null);
   const[searchTerm, setSearchTerm] = useState(null);
+  const[savedEvent, setSavedEvent] = useState(null);
 
   const filterOption=["bachata", "kizomba", "salsa"];
 
@@ -94,12 +95,6 @@ function App() {
         : events.map((event) => <EventHandler event={event}/>)
       }
 
-      
-    
-      
-      <h2>hejjjj</h2>
-
-      {((filteredEvents.length > 0) && (filteredEvents.map((event) => <EventHandler event={event}/>))) || events.map((event) => <EventHandler event={event}/>) }
 
         <footer>
           dancecalendar.com
