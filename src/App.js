@@ -39,11 +39,17 @@ function App() {
   }
 
   if(style != null){
-    filteredEvents = events.filter((element) => {return element.style.includes(style)});
+    filteredEvents = events.filter((element) => {return element.style.toLocaleLowerCase().includes(style)});
   } 
 
   if(date != null){       
     filteredEvents = filteredEvents.filter((element) => {return element.date.toString().includes(date)}); 
+  }
+
+  if(searchTerm != null){
+    filteredEvents = filteredEvents.filter((element) => {
+      return element.title.toLocaleLowerCase().includes(searchTerm) || element.style.toLocaleLowerCase().includes(searchTerm) || element.location.toLocaleLowerCase().includes(searchTerm) || element.date.toString().toLocaleLowerCase().includes(searchTerm)
+    })
   }
   
 
@@ -52,15 +58,14 @@ function App() {
   
   
   return (
-
     <div className="App">
       <header className="header">
         <h1>Dance Calendar</h1>
       </header>
 
-      <input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/> 
-
-      <button>Search</button>
+      <form class="nosubmit">
+        <input class="nosubmit" type="search" placeholder="Search..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>         
+      </form>
 
       <button onClick={filterOptions}>filter</button>
       
@@ -82,7 +87,7 @@ function App() {
       )}
       
       {
-        filter === true? 
+        filter === true || searchTerm !== null? 
             (filteredEvents.length > 0)? 
               (filteredEvents.map((event) => <EventHandler event={event}/>))
             : (<div> No results matched</div>)
