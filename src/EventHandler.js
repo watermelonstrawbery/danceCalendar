@@ -3,11 +3,15 @@ import { Link } from 'react-router';
 import { EventDetails } from './EventDetails';
 import { events } from './events';
 
+
 export function EventHandler(props){
 
   let formatedDate = new Date(props.event.date).toDateString();
 
-  return <Link className='event-box' to={`/event-details/${props.event.key}`}>
+  return <div>
+     <button  onClick={() => {props.toggleFavorites(props.event.key)}}> star </button>
+ 
+     <Link className='event-box' to={`/event-details/${props.event.key}`}>
       Event name:
       {props.event.title}
       <br/>
@@ -20,7 +24,7 @@ export function EventHandler(props){
       Location:
       {props.event.location}
     </Link>
-   
+  </div>
     
 }
 

@@ -15,7 +15,7 @@ function App() {
   const[style, setStyle] = useState(null);
   const[date, setDate] = useState(null);
   const[searchTerm, setSearchTerm] = useState(null);
-  const[savedEvent, setSavedEvent] = useState(null);
+  const[savedEvents, setSavedEvents] = useState([]);
 
   const filterOption=["bachata", "kizomba", "salsa"];
 
@@ -52,11 +52,19 @@ function App() {
       return element.title.toLocaleLowerCase().includes(searchTerm) || element.style.toLocaleLowerCase().includes(searchTerm) || element.location.toLocaleLowerCase().includes(searchTerm) || element.date.toString().toLocaleLowerCase().includes(searchTerm)
     })
   }
-  
 
 
-  console.log(searchTerm);
-  
+  function toggleFavorites(key){
+    if(savedEvents.includes(key)){
+      setSavedEvents( savedEvents.filter((thisKey) => thisKey !== key ) );  
+      console.log("tagits bort från favorites  " + savedEvents.toString());
+    }else{
+      setSavedEvents([...savedEvents, key]);
+      console.log("lagts till i favorites:  " + savedEvents.toString());  
+    }
+  }
+
+
   
   return (
     <div className="App">
@@ -64,8 +72,8 @@ function App() {
         <h1>Dance Calendar</h1>
       </header>
 
-      <form class="nosubmit">
-        <input class="nosubmit" type="search" placeholder="Search..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>         
+      <form className="nosubmit">
+        <input className="nosubmit" type="search" placeholder="Search..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>         
       </form>
 
       <button onClick={filterOptions}>filter</button>
@@ -90,9 +98,10 @@ function App() {
       {
         filter === true || searchTerm !== null? 
             (filteredEvents.length > 0)? 
-              (filteredEvents.map((event) => <EventHandler event={event}/>))
+              (filteredEvents.map((event) => <EventHandler toggleFavorites={toggleFavorites} event={event}/>))
             : (<div> No results matched</div>)
-        : events.map((event) => <EventHandler event={event}/>)
+        : events.map((event) => <EventHandler toggleFavorites={toggleFavorites} event={event}/>)
+        
       }
 
 
