@@ -1,3 +1,8 @@
+My ongoing private side project
+
+A calendar for latin dance events around Stockholm where the user can find events in different dance styles like bachata, salsa and kizomba by filtering the date, location, dance style etc. 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
